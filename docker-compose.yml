@@ -7,3 +7,4 @@ services:
       - .:/myapp
     ports:
       - "3000:3000"
+    entrypoint: ./entrypoint.sh
