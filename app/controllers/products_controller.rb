@@ -44,9 +44,10 @@ class ProductsController < ApplicationController
 
   # PUT /products/1/deactivate
   def deactivate
-    Product
-      .find(params[:product_id])
-      .update(status: :deactive)
+    product = Product.find(params[:product_id])
+    return render json: { message: 'Product already deactive.' }, status: :bad_request if product.deactive?
+
+    product.update(status: :deactive)
 
     render json: @product
   end

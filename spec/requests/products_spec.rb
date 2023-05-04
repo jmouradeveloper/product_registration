@@ -139,13 +139,23 @@ RSpec.describe "/products", type: :request do
   end
 
   describe "PUT /deactivate" do
-    let(:product) { FactoryBot.create(:product) }
+    let(:active_product)   { FactoryBot.create(:product) }
+    let(:deactive_product) { FactoryBot.create(:product, status: :deactive) }
 
     it 'change product to deactive' do
-      put product_deactivate_url(product), as: :json
+      put product_deactivate_url(active_product), as: :json
 
-      product.reload
-      expect(product.status).to eq('deactive')
+      expect(response).to be_successful
+      active_product.reload
+      expect(active_product.status).to eq('deactive')
+    end
+
+    it 'return error' do
+      put product_deactivate_url(deactive_product), as: :json
+
+      expect(response).to be_bad_request
+      deactive_product.reload
+      expect(deactive_product.status).to eq('deactive')
     end
   end
 end
