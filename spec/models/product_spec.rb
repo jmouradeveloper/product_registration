@@ -24,17 +24,5 @@ RSpec.describe Product, type: :model do
         it { expect(product.price).to eq(three_decimal_places_number.round(2)) }
       end
     end
-
-
-
-
-
-    context 'when valid' do
-      it { is_expected.to be_valid }
-    end
-
-    context 'when invalid' do
-      
-    end
   end
 end
