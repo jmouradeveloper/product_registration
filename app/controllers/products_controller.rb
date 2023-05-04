@@ -28,20 +28,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
-  def update
-    if @product.update(product_params)
-      render json: @product
-    else
-      render json: @product.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /products/1
-  def destroy
-    @product.destroy
-  end
-
   # PUT /products/1/deactivate
   def deactivate
     product = Product.find(params[:product_id])

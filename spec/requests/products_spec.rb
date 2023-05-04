@@ -101,43 +101,6 @@ RSpec.describe "/products", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    let(:product) { FactoryBot.create(:product) }
-
-    context "with valid parameters" do
-      let(:new_attributes) { FactoryBot.attributes_for(:product) }
-
-      it "updates the requested product" do
-        patch product_url(product), params: { product: new_attributes }, as: :json
-        product.reload
-
-        expect(product.name).to       eq(new_attributes[:name])
-        expect(product.price.to_f).to eq(new_attributes[:price].to_f)
-        expect(product.photo_url).to  eq(new_attributes[:photo_url])
-        expect(product.status).to     eq('active')
-      end
-
-      it "renders a JSON response with the product" do
-        patch product_url(product), params: { product: new_attributes }, as: :json
-        expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a JSON response with errors for the product" do
-        patch product_url(product), params: { product: invalid_attributes }, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    let!(:product) { FactoryBot.create(:product) }
-    it { expect { delete product_url(product), as: :json }.to change(Product, :count).by(-1) }
-  end
-
   describe "PUT /deactivate" do
     let(:active_product)   { FactoryBot.create(:product) }
     let(:deactive_product) { FactoryBot.create(:product, status: :deactive) }
