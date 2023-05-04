@@ -10,5 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_062834) do
+  create_table "products", force: :cascade do |t|
+    t.string "name", limit: 100, null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.string "photo_url", null: false
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
