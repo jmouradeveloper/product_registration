@@ -5,6 +5,7 @@ ruby "3.0.0"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
 gem "bootsnap", require: false
+gem 'kaminari'
 gem "puma", "~> 5.0"
 gem "sqlite3", "~> 1.4"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
